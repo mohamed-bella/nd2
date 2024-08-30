@@ -1,0 +1,52 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<main class="bg-gray-100 min-h-screen py-8">
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-3xl font-semibold mb-6">Dashboard</h1>
+    
+    <% if (successMessage) { %>
+      <% if (successMessage.length > 0) { %>
+        <div class="bg-green-100 text-green-800 border border-green-300 px-4 py-3 rounded mb-6" role="alert">
+          <strong class="font-bold">Success:</strong>
+          <span class="block sm:inline"><%= successMessage %></span>
+        </div>
+      <% } %>
+    <% } %>
+
+    <!-- Dog Listings -->
+    <div class="bg-white p-4 rounded-lg shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">My Listings</h2>
+      
+      <% if (dogs.length > 0) { %>
+        <ul class="space-y-4">
+          <% dogs.forEach(dog => { %>
+            <li class="border-b border-gray-200 pb-4">
+              <div class="flex items-center space-x-4">
+                <img src="<%= dog.picture %>" alt="Picture of <%= dog.name %>" class="w-32 h-32 object-cover rounded-lg">
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold"><%= dog.name %> (<%= dog.breed %>)</h3>
+                  <p class="text-gray-600 mt-1"><%= dog.description %></p>
+                  <p class="text-gray-700 mt-1">Price: <span class="font-semibold"><%= dog.price %> MAD</span></p>
+                  <p class="text-gray-700 mt-1">Location: <span class="font-semibold"><%= dog.location.city %>, <%= dog.location.region %></span></p>
+                </div>
+              </div>
+              <div class="mt-4 flex space-x-2">
+                <a href="dashboard/chien/<%= dog._id %>" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500">View Details</a>
+                <a href="dashboard/chien/<%= dog._id %>/edit" class="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-100 focus:ring-2 focus:ring-blue-500">Edit Listing</a>
+                <form action="dashboard/chien/<%= dog._id %>/delete" method="POST" class="inline">
+                  <button type="submit" class="px-4 py-2 text-sm font-medium text-red-700 bg-white border border-red-200 rounded-lg hover:bg-red-100 focus:ring-2 focus:ring-red-500">Delete Listing</button>
+                </form>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p class="text-gray-700">You have no listings yet.</p>
+        <a href="/vendre-votre-chien" class="mt-4 inline-block px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">Add a new dog</a>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

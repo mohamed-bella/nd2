@@ -1,0 +1,83 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<main class="bg-gray-100 min-h-screen py-8">
+  <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Modifier les Informations du Chien</h2>
+    
+    <form id="dogEditForm" class="space-y-6" method="POST" action="/dashboard/chien/<%= dog._id %>/edit" enctype="multipart/form-data">
+      <!-- Step 1: Basic Information -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold mb-4">Informations de Base</h3>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="name">Nom du Chien</label>
+          <input type="text" name="name" id="name" value="<%= dog.name %>" placeholder="Entrez le nom du chien" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="breed">Race du Chien</label>
+          <input type="text" name="breed" id="breed" value="<%= dog.breed %>" placeholder="Entrez la race du chien" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="age">Âge du Chien (en années)</label>
+          <input type="number" name="age" id="age" value="<%= dog.age %>" placeholder="Entrez l'âge du chien" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="sex">Sexe du Chien (mâle/femelle)</label>
+          <select class="select select-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" name="sex" id="sex" required>
+            <option value="male" <%= dog.sex === 'male' ? 'selected' : '' %>>Mâle</option>
+            <option value="female" <%= dog.sex === 'female' ? 'selected' : '' %>>Femelle</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 2: Details -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold mb-4">Détails</h3>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="description">Description</label>
+          <textarea name="description" id="description" placeholder="Décrivez le chien" class="textarea textarea-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required><%= dog.description %></textarea>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="city">Ville</label>
+          <input type="text" name="location[city]" id="city" value="<%= dog.location.city %>" placeholder="Entrez votre ville" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="region">Région</label>
+          <input type="text" name="location[region]" id="region" value="<%= dog.location.region %>" placeholder="Entrez votre région" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+      </div>
+
+      <!-- Step 3: Price and Picture -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold mb-4">Prix et Photo</h3>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="price">Prix</label>
+          <input type="number" name="price" id="price" value="<%= dog.price %>" placeholder="Entrez le prix" class="input input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="picture">Téléchargez une Nouvelle Photo</label>
+          <input type="file" id="picture" class="file-input file-input-bordered w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" accept="image/*" name="picture">
+          <% if (dog.picture) { %>
+            <img src="<%= dog.picture %>" alt="<%= dog.name %>" class="w-full h-48 object-cover mt-4 rounded-lg shadow-sm">
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="mt-6">
+        <button type="submit" class="btn btn-primary w-full py-2 px-4 text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Sauvegarder les Modifications</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

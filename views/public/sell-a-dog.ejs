@@ -1,0 +1,224 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<body style="background-color: rgb(41, 41, 41);">
+  
+<main>
+  <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Vendre Votre Chien</h2>
+    <div class="divider"></div>
+    <form id="dogSaleForm" class="space-y-4" method="post" enctype="multipart/form-data" action="/vendre-votre-chien">
+      <!-- Étape 1: Informations de Base -->
+      <div class="step" id="step1">
+        <h3 class="text-xl font-semibold mb-4">Étape 1: Informations de Base</h3>
+        <div class="form-control">
+          <label class="label" for="name">
+            <span class="label-text">Nom du Chien</span>
+          </label>
+          <input type="text" name="name" id="name" placeholder="Entrez le nom du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="breed">
+            <span class="label-text">Race du Chien</span>
+          </label>
+          <input type="text" name="breed" id="breed" list="breedList" placeholder="Entrez la race du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          <datalist id="breedList">
+            <option value="Berger Allemand">
+            <option value="Labrador Retriever">
+            <option value="Bouledogue Français">
+            <option value="Caniche">
+            <option value="Chihuahua">
+            <option value="Golden Retriever">
+            <option value="Husky Sibérien">
+            <option value="Yorkshire Terrier">
+          </datalist>
+        </div>
+        <div class="form-control">
+          <label class="label" for="age">
+            <span class="label-text">Âge du Chien (Ex. 6 mois)</span>
+          </label>
+          <input type="text" name="age" id="age" placeholder="Entrez l'âge du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="sex">
+            <span class="label-text">Sexe du Chien (mâle/femelle)</span>
+          </label>
+          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sex" id="sex">
+            <option value="male">Mâle</option>
+            <option value="female">Femelle</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Étape 2: Détails -->
+      <div class="step" id="step2" style="display:none;">
+        <h3 class="text-xl font-semibold mb-4">Étape 2: Détails</h3>
+        <div class="form-control">
+          <label class="label" for="size">
+            <span class="label-text">Taille</span>
+          </label>
+          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="size" id="size">
+            <option value="small">Petite</option>
+            <option value="medium">Moyenne</option>
+            <option value="large">Grande</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label class="label" for="color">
+            <span class="label-text">Couleur</span>
+          </label>
+          <input type="text" name="color" id="color" placeholder="Entrez la couleur du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="temperament">
+            <span class="label-text">Tempérament <span class="text-gray-500 text-sm">(Ex: Affectueux, Énergique, Calme)</span></span>
+          </label>
+          <input type="text" name="temperament" id="temperament" placeholder="Entrez le tempérament du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="vaccinationStatus">
+            <span class="label-text">Statut de Vaccination</span>
+          </label>
+          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="vaccinationStatus" id="vaccinationStatus">
+            <option value="up-to-date">À jour</option>
+            <option value="not-vaccinated">Non vacciné</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label class="label" for="spayedNeutered">
+            <span class="label-text">Stérilisé/Castré</span>
+          </label>
+          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="spayedNeutered" id="spayedNeutered">
+            <option value="yes">Oui</option>
+            <option value="no">Non</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label class="label" for="healthCondition">
+            <span class="label-text">État de Santé <span class="text-gray-500 text-sm">(Ex: Bonne santé, Problèmes de santé)</span></span>
+          </label>
+          <input type="text" name="healthCondition" id="healthCondition" placeholder="Entrez l'état de santé du chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="description">
+            <span class="label-text">Description <span class="text-gray-500 text-sm">(Ex: Chien très affectueux et joueur)</span></span>
+          </label>
+          <textarea name="description" id="description" placeholder="Décrivez le chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+        </div>
+        <div class="form-control">
+          <label class="label" for="city">
+            <span class="label-text">Ville</span>
+          </label>
+          <input type="text" name="city" id="city" list="cityList" placeholder="Entrez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          <datalist id="cityList">
+            <option value="Casablanca">
+            <option value="Rabat">
+            <option value="Marrakech">
+            <option value="Fès">
+            <option value="Tanger">
+            <option value="Agadir">
+            <option value="Meknès">
+            <option value="Oujda">
+          </datalist>
+        </div>
+        <div class="form-control">
+          <label class="label" for="region">
+            <span class="label-text">Région</span>
+          </label>
+          <input type="text" name="region" id="region" list="regionList" placeholder="Entrez votre région" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          <datalist id="regionList">
+            <option value="Grand Casablanca">
+            <option value="Rabat-Salé-Kénitra">
+            <option value="Marrakech-Safi">
+            <option value="Fès-Meknès">
+            <option value="Tanger-Tétouan-Al Hoceïma">
+            <option value="Souss-Massa">
+            <option value="L'Oriental">
+            <option value="Beni Mellal-Khénifra">
+          </datalist>
+        </div>
+      </div>
+
+      <!-- Étape 3: Prix et Photos -->
+      <div class="step" id="step3" style="display:none;">
+        <h3 class="text-xl font-semibold mb-4">Étape 3: Prix et Photos</h3>
+        <div class="form-control">
+          <label class="label" for="price">
+            <span class="label-text">Prix <span class="text-gray-500 text-sm">(Ex: 3000 DH, 5000 DH)</span></span>
+          </label>
+          <input type="number" name="price" id="price" placeholder="Entrez le prix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="whatsapp">
+            <span class="label-text">Votre numero Whatsapp <span class="text-gray-500 text-sm">(Ex: 0612345678)</span></span>
+          </label>
+          <input type="number" name="whatsapp" id="whatsapp" placeholder="Entrez Votre Numero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        </div>
+        <div class="form-control">
+          <label class="label" for="picture">
+            <span class="label-text">Télécharger une Photo <span class="text-gray-500 text-sm">( photo du chien)</span></span>
+          </label>
+          <input type="file" id="picture" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" accept="image/*" name="picture" required>
+        </div>
+      </div>
+
+      <!-- Boutons de Navigation -->
+      <div class="form-control mt-6 flex flex-row justify-between">
+        <button type="button" id="prevBtn" class="btn btn-secondary" style="display:none;" onclick="nextPrev(-1)">Précédent</button>
+        <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)">Suivant</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script>
+  let currentStep = 0;
+  const steps = document.getElementsByClassName('step');
+  const form = document.getElementById('dogSaleForm');
+
+  function showStep(n) {
+    steps[currentStep].style.display = 'none';
+    steps[n].style.display = 'block';
+    currentStep = n;
+    
+    if (currentStep == 0) {
+      document.getElementById('prevBtn').style.display = 'none';
+    } else {
+      document.getElementById('prevBtn').style.display = 'inline-block';
+    }
+    
+    if (currentStep == (steps.length - 1)) {
+      document.getElementById('nextBtn').innerHTML = 'Soumettre';
+    } else {
+      document.getElementById('nextBtn').innerHTML = 'Suivant';
+    }
+  }
+
+  function nextPrev(n) {
+    if (n == 1 && !validateForm()) return false;
+    
+    if (currentStep + n >= steps.length) {
+      form.submit();
+      return false;
+    }
+    
+    showStep(currentStep + n);
+  }
+
+  function validateForm() {
+    let valid = true;
+    const inputs = steps[currentStep].getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value == '' && inputs[i].hasAttribute('required')) {
+        inputs[i].classList.add('input-error');
+        valid = false;
+      } else {
+        inputs[i].classList.remove('input-error');
+      }
+    }
+    return valid;
+  }
+
+  showStep(currentStep);
+</script>
+
+<%- include('../partials/footer.ejs') %>

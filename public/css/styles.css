@@ -1,0 +1,60 @@
+=
+
+html {
+}
+body {
+     font-family:  sans-serif;
+     font-optical-sizing: auto;
+     font-weight: 500;
+     font-style: normal;
+ }
+ 
+
+ 
+ /* Base font size for desktop */
+body {
+     font-size: 16px; /* Default font size for larger screens */
+   }
+  
+   main {
+     max-width: 800px;
+     margin: 0 auto;
+     padding-left: 1rem;
+     padding-right: 1rem;
+ }
+ 
+ @media (min-width: 640px) {
+     main {
+         padding-left: 5px;
+         padding-right: 5px;
+     }
+ }
+ 
+   /* Smaller font size for phones */
+   @media (max-width: 640px) {
+     body {
+       font-size: 14px; /* Smaller font size for small screens */
+     }
+   }
+   
+   /* Optional: Adjust font sizes for other elements */
+   h1 {
+     font-size: 2rem; /* 32px for desktop */
+   }
+   
+   @media (max-width: 640px) {
+     h1 {
+       font-size: 1.75rem; /* 28px for small screens */
+     }
+   }
+   
+   p {
+     font-size: 1rem; /* 16px for desktop */
+   }
+   
+   @media (max-width: 640px) {
+     p {
+       font-size: 0.875rem; /* 14px for small screens */
+     }
+   }
+   

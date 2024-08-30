@@ -1,0 +1,75 @@
+<%- include('../partials/head.ejs') %>
+    <%- include('../partials/navbar.ejs') %>
+
+        <main class="">
+            <div class="my-6">
+                <ul class="flex space-x-4">
+                    <li>
+                        <img src="https://cdn2.iconfinder.com/data/icons/pet-and-veterinary-1/85/cat_charity_love_adopt_adoption-256.png" alt="adoption icon" class="h-auto w-12 max-w-xs mx-auto">
+                    </li>
+                    <li>
+                        <h1 class="text-2xl">
+                            Trouvez Votre Chien Idéal à Adopter ou à Acheter
+                        </h1>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <% if(dogs.length> 0) { %>
+                <div class="divider"></div>
+                <div class="my-6 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+                    <% dogs.forEach(dog=> { %>
+                        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <a href="chien/<%= dog._id %>">
+                                <img class="p-8 rounded-t-lg w-full object-cover" src="<%= dog.picture %>" alt="<%= dog.name %>" />
+                            </a>
+                            <div class="px-5 pb-5">
+                                <a href="chien/<%= dog._id %>">
+                                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                        <%= dog.name %>
+                                    </h5>
+                                </a>
+                                <div class="flex items-center mt-2.5 mb-5">
+                                </div>
+                                <div class="flex flex-col space-y-2">
+                                    <!-- Dog Details -->
+                                    <!-- dog city -->
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://cdn1.iconfinder.com/data/icons/search-engine-optimisation-seo/44/seo_icons-26-64.png" class="w-5 h-5" alt="City Icon" />
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            <%= dog.location.city %>
+                                        </span>
+                                    </div>
+                                    <!-- sex -->
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/3d-medical/256/MEDICAL_ICON_09.png" class="w-5 h-5" alt="City Icon" />
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            <%= dog.sex %>
+                                        </span>
+                                    </div>
+                                    <!-- dog breed -->
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://cdn0.iconfinder.com/data/icons/animal-kingdom-vol-1/512/dog_animal_puppy_pet-256.png" class="w-5 h-5" alt="Breed Icon" />
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            <%= dog.breed %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-2xl font-bold text-blue-600 dark:text-white">
+                                        <%= dog.price %> DH
+                                    </span>
+                                    <a href="chien/<%= dog._id %>" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Plus </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } else { %>
+                    <p class="text-center text-xl">Aucun chien pour le moment</p>
+                    <% } %>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>

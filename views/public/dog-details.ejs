@@ -1,0 +1,43 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<main>
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+    <!-- Dog Details Header -->
+    <header class="flex flex-col md:flex-row items-center mb-6">
+      <img src="<%= dog.picture %>" alt="<%= dog.name %>" class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-md">
+      <div class="md:ml-6 mt-4 md:mt-0">
+        <h1 class="text-3xl font-bold mb-2"><%= dog.name %></h1>
+        <p class="text-gray-600 mb-2">Race: <%= dog.breed %></p>
+        <p class="text-gray-600 mb-2">Âge: <%= dog.age %> ans</p>
+        <p class="text-gray-600 mb-2">Sexe: <%= dog.sex === 'male' ? 'Mâle' : 'Femelle' %></p>
+        <p class="text-gray-600 mb-2">Taille: <%= dog.size === 'small' ? 'Petite' : dog.size === 'medium' ? 'Moyenne' : 'Grande' %></p>
+        <p class="text-gray-600 mb-2">Couleur: <%= dog.color %></p>
+        <p class="text-gray-600 mb-2">Tempérament: <%= dog.temperament %></p>
+        <p class="text-gray-600 mb-2">État de Santé: <%= dog.healthCondition %></p>
+        <p class="text-gray-600 mb-2">Statut de Vaccination: <%= dog.vaccinationStatus === 'up-to-date' ? 'À jour' : 'Non vacciné' %></p>
+        <p class="text-gray-600 mb-2">Stérilisé/Castré: <%= dog.spayedNeutered === 'yes' ? 'Oui' : 'Non' %></p>
+        <p class="text-gray-600 mb-2">Ville: <%= dog.location.city %></p>
+        <p class="text-gray-600 mb-4">Région: <%= dog.location.region %></p>
+        <p class="text-gray-800 mb-6">Description: <%= dog.description %></p>
+        
+        <!-- CTA Button -->
+        <a
+  href="https://wa.me/212704969534?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20chien%20avec%20les%20d%C3%A9tails%20suivants%3A%0A%0AID%20du%20Chien%3A%20<%= dog._id%>%0ANom%20du%20Chien%3A%20<%= dog.name%>%0ARace%20du%20Chien%3A%20<%= dog.breed%>%0A%C3%82ge%20du%20Chien%3A%20<%= dog.age%>%0ASexe%20du%20Chien%3A%20<%= dog.sec%>%0ATaille%3A%20<%= dog.size%>%0ACouleur%3A%20<%= dog.color%>%0ATemp%C3%A9rament%3A%20<%= dog.temperament%>%0AVille%3A%20<%= dog.location.city%>%0APrix%3A%20<%= dog.price%>"
+  class="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700"
+  target="_blank"
+>
+  <img
+    src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Whatsapp2_colored_svg-256.png"
+    alt="WhatsApp Icon"
+    class="w-6 h-6"
+  />
+  <span>Contactez-nous sur WhatsApp</span>
+</a>
+
+      </div>
+    </header>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>
